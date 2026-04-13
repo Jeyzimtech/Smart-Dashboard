@@ -2,7 +2,7 @@ import React from 'react';
 import { Terminal } from 'lucide-react';
 
 export const NotificationPanel = ({ logs, setShowNotifPanel }) => (
-  <div className="absolute top-12 right-[-50px] sm:right-0 w-[90vw] sm:w-80 bg-surface-container border border-outline-variant shadow-2xl rounded-lg overflow-hidden z-[60] animate-in fade-in slide-in-from-top-2 duration-200">
+  <div className="absolute top-4 right-4 sm:top-12 sm:right-6 w-[calc(100vw-32px)] sm:w-80 bg-surface-container border border-outline-variant shadow-2xl rounded-lg overflow-hidden z-[60] animate-in fade-in slide-in-from-top-2 duration-200">
     <div className="p-4 border-b border-outline-variant/10 bg-surface-container-high/50 flex justify-between items-center">
       <span className="text-[10px] font-headline font-bold tracking-widest uppercase text-on-surface">Recent Alerts</span>
       <button onClick={() => setShowNotifPanel(false)} className="text-on-surface-variant hover:text-on-surface text-[10px] uppercase font-bold">Close</button>
