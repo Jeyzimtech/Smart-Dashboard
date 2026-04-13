@@ -162,7 +162,7 @@ const App = () => {
           {showNotifPanel && (
             <div 
               ref={notifPanelRef}
-              className="absolute top-12 right-0 w-80 bg-surface-container border border-outline-variant shadow-2xl rounded-lg overflow-hidden z-[60] animate-in fade-in slide-in-from-top-2 duration-200"
+              className="absolute top-12 right-[-50px] sm:right-0 w-[90vw] sm:w-80 bg-surface-container border border-outline-variant shadow-2xl rounded-lg overflow-hidden z-[60] animate-in fade-in slide-in-from-top-2 duration-200"
             >
               <div className="p-4 border-b border-outline-variant/10 bg-surface-container-high/50 flex justify-between items-center">
                 <span className="text-[10px] font-headline font-bold tracking-widest uppercase text-on-surface">Recent Alerts</span>
@@ -271,20 +271,20 @@ const App = () => {
                 </div>
 
                 <div className="flex items-start gap-4 mt-4">
-                  <span className={`text-[12rem] leading-[0.8] font-headline font-extrabold tracking-tighter drop-shadow-2xl transition-colors duration-500 ${isCritical ? 'text-error' : 'text-on-surface'}`}>
+                  <span className={`text-7xl sm:text-9xl md:text-[10rem] lg:text-[12rem] leading-[0.8] font-headline font-extrabold tracking-tighter drop-shadow-2xl transition-colors duration-500 ${isCritical ? 'text-error' : 'text-on-surface'}`}>
                     {temperature.toFixed(1)}
                   </span>
-                  <div className="pt-6 space-y-4">
-                    <span className="text-6xl font-headline font-light text-on-surface-variant/50">°C</span>
+                  <div className="pt-2 sm:pt-6 space-y-4">
+                    <span className="text-3xl sm:text-6xl font-headline font-light text-on-surface-variant/50">°C</span>
                     {isCritical && (
-                      <div className="bg-error-container/40 border border-error/30 px-3 py-1 rounded">
-                        <span className="text-[10px] font-headline text-error font-bold tracking-widest uppercase animate-pulse">Critical State</span>
+                      <div className="bg-error-container/40 border border-error/30 px-2 sm:px-3 py-1 rounded">
+                        <span className="text-[8px] sm:text-[10px] font-headline text-error font-bold tracking-widest uppercase animate-pulse">Critical</span>
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-12 sm:mt-16 max-w-2xl">
                   <MetricSmall label="Setpoint_Max" value="30.0 °C" />
                   <MetricSmall label="Peak_Recorded" value={`${peakTemp.toFixed(1)} °C`} />
                   <MetricSmall 
@@ -338,7 +338,7 @@ const App = () => {
           <section className="col-span-12 lg:col-span-4 space-y-6">
             
             {/* System Status Bento */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
               <StatusCard 
                 label="Power_Load" 
                 value="88.2%" 
