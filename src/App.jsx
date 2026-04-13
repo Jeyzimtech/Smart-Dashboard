@@ -164,6 +164,13 @@ const App = () => {
     addLog('System alarm manually reset.', 'INFO');
   };
 
+  const clearLogs = () => {
+    setLogs([]);
+    setTimeout(() => {
+      addLog('System log buffer purged by operator.', 'WARN');
+    }, 100);
+  };
+
   return (
     <div className={`min-h-screen transition-colors duration-700 ${isCritical ? 'bg-[#2a0b0b]' : 'bg-surface'}`}>
       {/* Top Navbar */}
@@ -425,7 +432,12 @@ const App = () => {
                     {isCritical ? 'High_Surface_Temp_Alert' : 'Environment_Nominal'}
                   </span>
                 </div>
-                <button className="text-[9px] font-headline tracking-widest text-primary hover:underline uppercase transition-all">Clear_Logs</button>
+                <button 
+                  onClick={clearLogs}
+                  className="text-[9px] font-headline tracking-widest text-primary hover:underline uppercase transition-all"
+                >
+                  Clear Logs
+                </button>
               </div>
             </div>
 
