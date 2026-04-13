@@ -1,53 +1,32 @@
-# 🌌 Smart Data Center Monitor (React Edition)
+# Smart Dashboard - Data Center Monitoring
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Lucide](https://img.shields.io/badge/Lucide_Icons-FF69B4?style=for-the-badge&logo=lucide&logoColor=white)
+This is a simple dashboard built with React and Vite for monitoring thermal data in a data center.
 
-A professional-grade, real-time **React** Single Page Application (SPA) designed for thermal monitoring in mission-critical data center environments.
+## How to Install and Run Locally
 
-## 🚀 Key Features
+To get this project running on your computer, follow these steps:
 
-*   **⚛️ Fully Built with React**: Modern functional components and hooks (`useState`, `useEffect`, `useRef`).
-*   **📊 Live Telemetry Stream**: Simulates 10-second polling intervals with realistic thermal oscillation.
-*   **🚨 Critical Alert System**: Automatic threshold monitoring with deep-red UI transitions and pulsing error states.
-*   **📱 Universal Responsiveness**: Fluid layouts for Mobile, Tablet, and Desktop (optimized with Tailwind CSS).
-*   **🔔 Interactive Notifications**: Dynamic dropdown incident logs with real-time event tracking.
-*   **🎨 Premium Vanguard Aesthetic**: Industrial dark theme featuring glassmorphism and modern typography.
+1. Clone the repository to your local machine.
+2. Open your terminal in the project folder.
+3. Run `npm install` to download all the necessary packages.
+4. Run `npm run dev` to start the local development server.
+5. Open your browser and go to `http://localhost:5173`.
 
-## 🛠️ Technology Stack
+## Alert System Logic
 
-- **Framework**: [React.js](https://react.dev/)
-- **Bundler**: [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Fonts**: Space Grotesk & Inter (via Google Fonts)
+The system is designed to monitor a 30.0°C threshold. Here is how it works:
 
-## 📦 Installation & Setup
+1. **Threshold**: If the temperature goes above 30.0°C, the system triggers a CRITICAL state.
+2. **Visuals**: The background color changes to red and a warning label appears.
+3. **Sound**: A synthetic siren sound plays using the Web Audio API to alert the user.
+4. **Logs**: Every time the threshold is crossed, a message is added to the System Notifications list with a timestamp.
+5. **Recovery**: If the temperature goes back below 30.0°C, the system logs a recovery message and returns to the normal blue theme.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Jeyzimtech/Smart-Dashboard.git
-   cd Smart-Dashboard
-   ```
+The data is simulated using a sine-wave oscillation to make sure it hits the threshold every few seconds for testing purposes.
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## Technologies Used
 
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-## 📈 Monitoring Logic
-
-The system utilizes a sinusoidal oscillation algorithm to simulate realistic server rack temperature shifts:
-- **Nominal Baseline**: 27.5°C
-- **Critical Threshold**: 30.0°C
-- **Update Frequency**: 10.0 seconds
-
----
-Developed by **Jefter** - Technical System Operator
+- React.js
+- Tailwind CSS
+- Lucide React Icons
+- Vite
