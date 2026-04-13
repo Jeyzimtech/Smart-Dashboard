@@ -5,6 +5,9 @@ This is an advanced IoT Ops Center built with React and Vite for industrial ther
 ## Developer
 **Jefter Tokomere**
 
+## Live Demo
+[View the Live IoT Ops Center](https://smart-dashboard-smoky.vercel.app/)
+
 ## How to Install and Run Locally
 
 To get this project running on your computer, follow these steps:
