@@ -131,13 +131,13 @@ const App = () => {
         {isCritical && <div className="absolute inset-0 pointer-events-none z-10 bg-error/5 animate-pulse border-4 border-error/20"></div>}
 
         <div className="p-6 max-w-[1600px] mx-auto grid grid-cols-12 gap-6 relative z-20">
-          <div className="col-span-12 flex justify-between items-end mb-4">
+          <div className="col-span-12 flex flex-col sm:flex-row justify-between items-start sm:items-end mb-4 gap-2 sm:gap-4">
             <div className="space-y-1">
-              <h1 className="text-3xl font-headline font-bold tracking-tight text-on-surface uppercase">Rack_Exhaust_Temp</h1>
-              <p className="text-xs text-on-surface-variant font-medium uppercase tracking-[0.15em]">Node: SVR-RACK-ALPHA-9 // Section-04</p>
+              <h1 className="text-2xl sm:text-3xl font-headline font-bold tracking-tight text-on-surface uppercase whitespace-nowrap overflow-hidden text-ellipsis">Rack_Exhaust_Temp</h1>
+              <p className="text-[9px] sm:text-xs text-on-surface-variant font-medium uppercase tracking-[0.15em]">Node: SVR-RACK-ALPHA-9 // Section-04</p>
             </div>
-            <div className="text-right">
-              <p className="text-xl font-headline font-medium text-on-surface font-mono">{currentTime}</p>
+            <div className="text-left sm:text-right hidden sm:block">
+              <p className="text-lg sm:text-xl font-headline font-medium text-on-surface font-mono">{currentTime}</p>
             </div>
           </div>
 

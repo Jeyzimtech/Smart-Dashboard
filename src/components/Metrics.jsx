@@ -2,22 +2,22 @@ import React from 'react';
 import { Activity } from 'lucide-react';
 
 export const MetricHero = ({ temperature, isCritical, peakTemp }) => (
-  <div className={`rounded-lg p-12 relative overflow-hidden min-h-[480px] flex flex-col justify-center border transition-all duration-500 ${isCritical ? 'bg-error-container/20 border-error/30' : 'bg-surface-container border-outline-variant/5'}`}>
+  <div className={`rounded-lg p-6 sm:p-12 relative overflow-hidden min-h-[360px] sm:min-h-[480px] flex flex-col justify-center border transition-all duration-500 ${isCritical ? 'bg-error-container/20 border-error/30' : 'bg-surface-container border-outline-variant/5'}`}>
     <div className={`absolute -top-24 -right-24 w-96 h-96 blur-[100px] rounded-full transition-colors duration-1000 ${isCritical ? 'bg-error/20' : 'bg-primary/10'}`}></div>
     <div className="relative z-10">
       <div className="flex items-baseline gap-4">
-        <span className={`text-[10px] font-headline tracking-[0.4em] uppercase font-bold ${isCritical ? 'text-error' : 'text-primary'}`}>Current_Reading</span>
+        <span className={`text-[9px] sm:text-[10px] font-headline tracking-[0.4em] uppercase font-bold ${isCritical ? 'text-error' : 'text-primary'}`}>Current_Reading</span>
         <div className={`h-[1px] flex-grow bg-gradient-to-r to-transparent ${isCritical ? 'from-error/30' : 'from-primary/30'}`}></div>
       </div>
-      <div className="flex items-start gap-4 mt-4">
-        <span className={`text-7xl sm:text-9xl md:text-[10rem] lg:text-[12rem] leading-[0.8] font-headline font-extrabold tracking-tighter transition-colors duration-500 ${isCritical ? 'text-error' : 'text-on-surface'}`}>
+      <div className="flex items-start gap-4 mt-2 sm:mt-4">
+        <span className={`text-6xl xs:text-7xl sm:text-9xl md:text-[10rem] lg:text-[12rem] leading-[0.8] font-headline font-extrabold tracking-tighter transition-colors duration-500 ${isCritical ? 'text-error' : 'text-on-surface'}`}>
           {temperature.toFixed(1)}
         </span>
         <div className="pt-2 sm:pt-6 space-y-4">
-          <span className="text-3xl sm:text-6xl font-headline font-light text-on-surface-variant/50">°C</span>
+          <span className="text-2xl sm:text-6xl font-headline font-light text-on-surface-variant/50">°C</span>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 max-w-2xl">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mt-12 sm:mt-16 max-w-2xl">
         <MetricSmall label="Setpoint_Max" value="30.0 °C" />
         <MetricSmall label="Peak_Recorded" value={`${peakTemp.toFixed(1)} °C`} />
         <MetricSmall 

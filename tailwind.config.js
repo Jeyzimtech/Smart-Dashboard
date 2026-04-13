@@ -62,6 +62,14 @@ export default {
               "xl": "0.5rem",
               "full": "0.75rem"
       },
+      "screens": {
+        "xs": "375px",
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px",
+      },
       "fontFamily": {
               "headline": ["Space Grotesk"],
               "body": ["Inter"],
