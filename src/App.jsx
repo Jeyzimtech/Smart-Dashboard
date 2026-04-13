@@ -144,17 +144,57 @@ const App = () => {
           <section className="col-span-12 lg:col-span-8 space-y-6">
             <MetricHero temperature={temperature} isCritical={isCritical} peakTemp={peakTemp} />
             
-            <div className="bg-surface-container rounded-lg p-6 border border-outline-variant/10">
-              <div className="flex justify-between items-center mb-8">
+            <div className="bg-surface-container rounded-lg p-6 border border-outline-variant/10 relative overflow-hidden">
+              <div className="flex justify-between items-center mb-8 relative z-10">
                 <div className="flex items-center gap-2">
                   <BarChart3 className="text-primary w-4 h-4" />
                   <h3 className="text-[11px] font-headline tracking-[0.2em] font-bold text-on-surface uppercase">Temporal Analysis</h3>
                 </div>
+                <div className="flex items-center gap-4">
+                   <div className="flex items-center gap-2 text-[9px] uppercase font-bold text-on-surface-variant/60">
+                     <span className="w-2 h-2 rounded-full bg-primary/40"></span> Nominal
+                   </div>
+                   <div className="flex items-center gap-2 text-[9px] uppercase font-bold text-on-surface-variant/60">
+                     <span className="w-2 h-2 rounded-full bg-error/40"></span> Critical
+                   </div>
+                </div>
               </div>
-              <div className="h-48 flex items-end gap-1.5 relative px-2">
-                {tempHistory.map((val, i) => (
-                  <div key={i} className={`flex-1 transition-all rounded-t-[2px] ${val > 30 ? 'bg-error/40' : val > 28 ? 'bg-tertiary/40' : 'bg-primary/20'}`} style={{ height: `${Math.min(100, (val / 40) * 100)}%` }}></div>
-                ))}
+              
+              <div className="h-56 relative group">
+                {/* Grid Lines */}
+                <div className="absolute inset-x-0 top-0 h-full border-b border-outline-variant/5 flex flex-col justify-between pointer-events-none">
+                  {[40, 30, 20, 10, 0].map(level => (
+                    <div key={level} className="relative w-full border-t border-outline-variant/5">
+                      <span className="absolute -left-1 -top-2 text-[8px] font-mono text-on-surface-variant/30">{level}°</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Threshold Line */}
+                <div className="absolute inset-x-0 border-t border-error/30 border-dashed z-20 pointer-events-none" style={{ top: '25%' }}>
+                   <span className="absolute right-0 -top-3 text-[8px] font-bold text-error/60 bg-surface-container px-1 uppercase tracking-tighter">Threshold (30.0°C)</span>
+                </div>
+
+                {/* Bars */}
+                <div className="absolute inset-0 flex items-end gap-1 sm:gap-2 px-6 pt-4">
+                  {tempHistory.map((val, i) => (
+                    <div key={i} className="flex-1 flex flex-col items-center group/bar relative">
+                      <span className={`absolute -top-6 text-[9px] font-mono font-bold transition-all opacity-0 group-hover/bar:opacity-100 group-last:opacity-100 ${val > 30 ? 'text-error' : 'text-primary'}`}>
+                        {val.toFixed(1)}
+                      </span>
+                      <div 
+                        className={`w-full transition-all duration-700 rounded-t-[2px] relative ${val > 30 ? 'bg-error/40 border-t border-error/50 shadow-[0_0_15px_-5px_rgba(255,180,171,0.3)]' : 'bg-primary/20 border-t border-primary/30'} ${i === tempHistory.length - 1 ? 'ring-2 ring-primary/20 ring-offset-2 ring-offset-surface-container animate-pulse' : ''}`} 
+                        style={{ height: `${Math.min(100, (val / 40) * 100)}%` }}
+                      ></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-4 flex justify-between px-6 text-[8px] font-headline tracking-[0.2em] text-on-surface-variant/30 uppercase">
+                 <span>T-90s</span>
+                 <span>T-60s</span>
+                 <span>T-30s</span>
+                 <span>Live</span>
               </div>
             </div>
           </section>
