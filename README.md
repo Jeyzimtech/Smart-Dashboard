@@ -7,7 +7,7 @@ This is an advanced IoT Ops Center built with React and Vite for industrial ther
 
 ## Live Demo
 
-🚀 **[View the Live IoT Ops Center (Deployed on Vercel)](https://smart-dashboard-smoky.vercel.app/)**
+**[View the Live IoT Ops Center (Deployed on Vercel)](https://smart-dashboard-smoky.vercel.app/)**
 
 ## How to Install and Run Locally
 
