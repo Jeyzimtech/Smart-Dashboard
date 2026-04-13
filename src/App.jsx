@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { 
   Activity, 
   Settings, 
@@ -43,11 +43,10 @@ const App = () => {
   };
 
   // --- Simulated Data Fetching ---
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       // Simulate fetching from public/data.json
-      const response = await fetch('/data.json');
-      const data = await response.json();
+      await fetch('/data.json');
       
       // --- Oscillating Simulation Logic ---
       // To ensure the threshold is ALWAYS exceeded for the assessor, we use a 
@@ -71,28 +70,33 @@ const App = () => {
       setTemperature(newTemp);
       setTempHistory(prev => [...prev.slice(1), newTemp]);
       
-      if (newTemp > peakTemp) setPeakTemp(newTemp);
+      setPeakTemp(prev => newTemp > prev ? newTemp : prev);
 
       // Alert Logic
       if (newTemp > TEMP_THRESHOLD) {
-        if (!isCritical) {
-          setIsCritical(true);
-          addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT');
-        }
+        setIsCritical(prev => {
+          if (!prev) {
+            addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT');
+          }
+          return true;
+        });
       } else {
-        if (isCritical) {
-          setIsCritical(false);
-          addLog(`RECOVERY: Core temperature stabilized in Data Center Section-04.`, 'INFO');
-        }
+        setIsCritical(prev => {
+          if (prev) {
+            addLog(`RECOVERY: Core temperature stabilized in Data Center Section-04.`, 'INFO');
+          }
+          return false;
+        });
       }
     } catch (error) {
       console.error("Failed to fetch telemetry:", error);
       addLog('Error: Failed to sync with station sensor.', 'CRIT');
     }
-  };
+  }, [manualCooling]); // Only depends on manualCooling now
 
   // --- Effects ---
   useEffect(() => {
+    Promise.resolve().then(() => fetchData());
     const timer = setInterval(() => {
       fetchData();
     }, POLLING_INTERVAL);
@@ -105,7 +109,7 @@ const App = () => {
       clearInterval(timer);
       clearInterval(clock);
     };
-  }, [isCritical, manualCooling, peakTemp]);
+  }, [fetchData]);
 
   useEffect(() => {
     // Auto-scroll logs to bottom
