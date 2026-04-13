@@ -1,4 +1,4 @@
-# Smart Dashboard - Data Center Monitoring
+# IoT Temperature Ops Center
 
 This is a simple dashboard built with React and Vite for monitoring thermal data in a data center.
 

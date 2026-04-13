@@ -6,7 +6,7 @@ export const Navbar = ({ isCritical, showNotifPanel, toggleNotif }) => (
     <div className="flex items-center gap-8">
       <div className="flex items-center gap-2">
         <LayoutDashboard className="text-primary w-5 h-5" />
-        <span className="text-lg font-bold tracking-tighter text-primary font-headline uppercase whitespace-nowrap">Data Center Monitor</span>
+        <span className="text-lg font-bold tracking-tighter text-primary font-headline uppercase whitespace-nowrap">IoT Temperature Ops Center</span>
       </div>
       <div className="hidden md:flex gap-6 items-center text-[10px] tracking-widest font-headline uppercase">
         <a className="text-primary font-bold border-b-2 border-primary py-5" href="#">RACK ANALYSIS</a>
