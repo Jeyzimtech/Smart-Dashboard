@@ -176,9 +176,9 @@ const App = () => {
                 </div>
 
                 {/* Bars */}
-                <div className="absolute inset-0 flex items-end gap-1 sm:gap-2 px-6 pt-4">
+                <div className="absolute inset-x-0 bottom-0 h-full flex items-end gap-1 sm:gap-2 px-6 pb-2">
                   {tempHistory.map((val, i) => (
-                    <div key={i} className="flex-1 flex flex-col items-center group/bar relative">
+                    <div key={i} className="flex-1 h-full flex flex-col justify-end items-center group/bar relative">
                       <span className={`absolute -top-6 text-[9px] font-mono font-bold transition-all opacity-0 group-hover/bar:opacity-100 group-last:opacity-100 ${val > 30 ? 'text-error' : 'text-primary'}`}>
                         {val.toFixed(1)}
                       </span>
