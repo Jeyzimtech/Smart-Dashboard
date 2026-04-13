@@ -73,16 +73,7 @@ const App = () => {
       setPeakTemp(prev => newTemp > prev ? newTemp : prev);
 
       // Alert Logic
-      const crossedOver = newTemp > TEMP_THRESHOLD;
-      
-      setIsCritical(prev => {
-        if (crossedOver && !prev) {
-          addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT');
-        } else if (!crossedOver && prev) {
-          addLog(`RECOVERY: Core temperature stabilized in Data Center Section-04.`, 'INFO');
-        }
-        return crossedOver;
-      });
+      setIsCritical(newTemp > TEMP_THRESHOLD);
     } catch (error) {
       console.error("Failed to fetch telemetry:", error);
       addLog('Error: Failed to sync with station sensor.', 'CRIT');
@@ -105,6 +96,18 @@ const App = () => {
       clearInterval(clock);
     };
   }, [fetchData]);
+
+  useEffect(() => {
+    // Dedicated Alert Logger - Watches for TRANSITIONS only
+    if (isCritical) {
+      addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT');
+    } else {
+      // Recovery log (Skip initial nominal state)
+      if (logs.length > 2) {
+        addLog(`RECOVERY: Core temperature stabilized in Data Center Section-04.`, 'INFO');
+      }
+    }
+  }, [isCritical]); 
 
   useEffect(() => {
     // Auto-scroll logs to bottom
