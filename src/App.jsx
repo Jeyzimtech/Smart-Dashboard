@@ -39,7 +39,7 @@ const App = () => {
   // --- Helpers ---
   const addLog = (msg, type = 'INFO') => {
     const timestamp = new Date().toLocaleTimeString('en-GB', { hour12: false });
-    setLogs(prev => [...prev, { id: Date.now(), time: timestamp, type, msg }]);
+    setLogs(prev => [...prev.slice(-49), { id: crypto.randomUUID(), time: timestamp, type, msg }]);
   };
 
   // --- Simulated Data Fetching ---
@@ -73,21 +73,16 @@ const App = () => {
       setPeakTemp(prev => newTemp > prev ? newTemp : prev);
 
       // Alert Logic
-      if (newTemp > TEMP_THRESHOLD) {
-        setIsCritical(prev => {
-          if (!prev) {
-            addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT');
-          }
-          return true;
-        });
-      } else {
-        setIsCritical(prev => {
-          if (prev) {
-            addLog(`RECOVERY: Core temperature stabilized in Data Center Section-04.`, 'INFO');
-          }
-          return false;
-        });
-      }
+      const crossedOver = newTemp > TEMP_THRESHOLD;
+      
+      setIsCritical(prev => {
+        if (crossedOver && !prev) {
+          addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT');
+        } else if (!crossedOver && prev) {
+          addLog(`RECOVERY: Core temperature stabilized in Data Center Section-04.`, 'INFO');
+        }
+        return crossedOver;
+      });
     } catch (error) {
       console.error("Failed to fetch telemetry:", error);
       addLog('Error: Failed to sync with station sensor.', 'CRIT');
@@ -363,7 +358,7 @@ const App = () => {
               <div className="p-4 border-b border-outline-variant/10 bg-surface-container/30 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <Terminal className="text-on-surface-variant w-4 h-4" />
-                  <h3 className="text-[11px] font-headline tracking-[0.2em] font-bold text-on-surface uppercase">System_Notifications</h3>
+                  <h3 className="text-[11px] font-headline tracking-[0.2em] font-bold text-on-surface uppercase">System Notifications</h3>
                 </div>
                 <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-sm bg-surface-container-highest text-[8px] font-headline text-on-surface-variant tracking-widest uppercase">
                   <span className="w-1 h-1 bg-primary rounded-full animate-pulse"></span>
