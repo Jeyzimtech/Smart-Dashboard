@@ -1,16 +1,53 @@
-# React + Vite
+# 🌌 Smart Data Center Monitor (React Edition)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Lucide](https://img.shields.io/badge/Lucide_Icons-FF69B4?style=for-the-badge&logo=lucide&logoColor=white)
 
-Currently, two official plugins are available:
+A professional-grade, real-time **React** Single Page Application (SPA) designed for thermal monitoring in mission-critical data center environments.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Key Features
 
-## React Compiler
+*   **⚛️ Fully Built with React**: Modern functional components and hooks (`useState`, `useEffect`, `useRef`).
+*   **📊 Live Telemetry Stream**: Simulates 10-second polling intervals with realistic thermal oscillation.
+*   **🚨 Critical Alert System**: Automatic threshold monitoring with deep-red UI transitions and pulsing error states.
+*   **📱 Universal Responsiveness**: Fluid layouts for Mobile, Tablet, and Desktop (optimized with Tailwind CSS).
+*   **🔔 Interactive Notifications**: Dynamic dropdown incident logs with real-time event tracking.
+*   **🎨 Premium Vanguard Aesthetic**: Industrial dark theme featuring glassmorphism and modern typography.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Technology Stack
 
-## Expanding the ESLint configuration
+- **Framework**: [React.js](https://react.dev/)
+- **Bundler**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Fonts**: Space Grotesk & Inter (via Google Fonts)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Jeyzimtech/Smart-Dashboard.git
+   cd Smart-Dashboard
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+## 📈 Monitoring Logic
+
+The system utilizes a sinusoidal oscillation algorithm to simulate realistic server rack temperature shifts:
+- **Nominal Baseline**: 27.5°C
+- **Critical Threshold**: 30.0°C
+- **Update Frequency**: 10.0 seconds
+
+---
+Developed by **Jefter** - Technical System Operator
