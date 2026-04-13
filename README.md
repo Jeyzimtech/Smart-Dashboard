@@ -1,4 +1,4 @@
-# IoT Temperature Ops Center
+# IoT Temperature Ops Center (Smart Dashboard)
 
 This is an advanced IoT Ops Center built with React and Vite for industrial thermal telemetry.
 
