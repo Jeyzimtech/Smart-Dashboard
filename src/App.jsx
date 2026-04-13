@@ -16,7 +16,7 @@ const App = () => {
   const [temperature, setTemperature] = useState(22.4);
   const [isCritical, setIsCritical] = useState(false);
   const [logs, setLogs] = useState([
-    { id: 1, time: '17:40:00', type: 'INFO', msg: 'Data Center Node SVR-RACK-ALPHA-9 online.' },
+    { id: 1, time: '17:40:00', type: 'INFO', msg: 'IoT Sensor Node SVR-RACK-ALPHA-9 online.' },
     { id: 2, time: '17:42:00', type: 'INFO', msg: 'Core cooling synchronization: STABLE.' }
   ]);
   const [tempHistory, setTempHistory] = useState([21.2, 21.8, 22.1, 23.3, 22.8, 22.1, 22.5, 23.2, 22.4, 22.4]);
@@ -94,7 +94,7 @@ const App = () => {
       setTimeout(() => addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT'), 0);
       playSiren();
     } else {
-      setTimeout(() => addLog(`RECOVERY: Core temperature stabilized in Data Center Section-04.`, 'INFO'), 0);
+      setTimeout(() => addLog(`RECOVERY: Core temperature stabilized in IoT Station Section-04.`, 'INFO'), 0);
     }
   }, [isCritical]);
 

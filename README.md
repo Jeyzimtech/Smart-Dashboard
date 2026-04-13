@@ -1,6 +1,6 @@
 # IoT Temperature Ops Center
 
-This is a simple dashboard built with React and Vite for monitoring thermal data in a data center.
+This is an advanced IoT Ops Center built with React and Vite for industrial thermal telemetry.
 
 ## Developer
 **Jefter Tokomere**
