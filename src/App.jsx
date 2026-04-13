@@ -127,7 +127,7 @@ const App = () => {
 
       <Sidebar />
 
-      <main className="md:ml-20 pt-16 min-h-screen relative overflow-hidden">
+      <main className="md:ml-20 pt-16 pb-24 md:pb-8 min-h-screen relative overflow-hidden">
         {isCritical && <div className="absolute inset-0 pointer-events-none z-10 bg-error/5 animate-pulse border-4 border-error/20"></div>}
 
         <div className="p-6 max-w-[1600px] mx-auto grid grid-cols-12 gap-6 relative z-20">
@@ -174,7 +174,7 @@ const App = () => {
         {showNotifPanel && <NotificationPanel logs={logs} setShowNotifPanel={setShowNotifPanel} />}
       </main>
 
-      <div className="md:hidden fixed bottom-0 left-0 w-full bg-surface-container border-t border-outline-variant z-50 flex justify-around py-4">
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-surface-container border-t border-outline-variant z-50 grid grid-cols-4 py-4">
         <MobileNavBtn icon={<LayoutDashboard />} label="Dash" active />
         <MobileNavBtn icon={<Activity />} label="Sens" />
         <MobileNavBtn 
