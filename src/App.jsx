@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { BarChart3, Zap, Wind, LayoutDashboard, Activity, Settings } from 'lucide-react';
+import { BarChart3, Zap, Wind, LayoutDashboard, Activity, Settings, History } from 'lucide-react';
 
 // Specialized Components
 import { Navbar, Sidebar } from './components/Navigation';
@@ -177,14 +177,19 @@ const App = () => {
       <div className="md:hidden fixed bottom-0 left-0 w-full bg-surface-container border-t border-outline-variant z-50 flex justify-around py-4">
         <MobileNavBtn icon={<LayoutDashboard />} label="Dash" active />
         <MobileNavBtn icon={<Activity />} label="Sens" />
+        <MobileNavBtn 
+          icon={<History size={20} />} 
+          label="Logs" 
+          onClick={() => setShowNotifPanel(!showNotifPanel)}
+        />
         <MobileNavBtn icon={<Settings />} label="Sys" />
       </div>
     </div>
   );
 };
 
-const MobileNavBtn = ({ icon, label, active = false }) => (
-  <button className={`flex flex-col items-center gap-1 ${active ? 'text-primary' : 'text-on-surface-variant/60'}`}>
+const MobileNavBtn = ({ icon, label, active = false, onClick }) => (
+  <button onClick={onClick} className={`flex flex-col items-center gap-1 ${active ? 'text-primary' : 'text-on-surface-variant/60'}`}>
     {React.cloneElement(icon, { size: 20 })}
     <span className="text-[8px] font-headline uppercase font-bold">{label}</span>
   </button>
