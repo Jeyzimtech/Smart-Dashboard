@@ -42,6 +42,33 @@ const App = () => {
     setLogs(prev => [...prev.slice(-49), { id: crypto.randomUUID(), time: timestamp, type, msg }]);
   };
 
+  const playSiren = () => {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sawtooth';
+      // Pulsating Frequency (440Hz to 880Hz)
+      osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.2);
+      osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.4);
+      osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.6);
+      osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.8);
+
+      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 1);
+    } catch (e) {
+      console.warn("Audio Context blocked or unsupported:", e);
+    }
+  };
+
   // --- Simulated Data Fetching ---
   const fetchData = useCallback(async () => {
     try {
@@ -101,6 +128,7 @@ const App = () => {
     // Dedicated Alert Logger - Watches for TRANSITIONS only
     if (isCritical) {
       addLog(`CRITICAL OVERHEAT: Rack SVR-RACK-ALPHA-9 exceeds ${TEMP_THRESHOLD}°C!`, 'CRIT');
+      playSiren();
     } else {
       // Recovery log (Skip initial nominal state)
       if (logs.length > 2) {
