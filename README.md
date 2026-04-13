@@ -9,8 +9,11 @@ This is a simple dashboard built with React and Vite for monitoring thermal data
 
 To get this project running on your computer, follow these steps:
 
-1. Clone the repository to your local machine.
-2. Open your terminal in the project folder.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Jeyzimtech/Smart-Dashboard.git
+   ```
+2. Open your terminal in the `Smart-Dashboard` folder.
 3. Install the required packages by running:
    ```bash
    npm install
