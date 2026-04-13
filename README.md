@@ -6,7 +6,8 @@ This is an advanced IoT Ops Center built with React and Vite for industrial ther
 **Jefter Tokomere**
 
 ## Live Demo
-[View the Live IoT Ops Center](https://smart-dashboard-smoky.vercel.app/)
+
+🚀 **[View the Live IoT Ops Center (Deployed on Vercel)](https://smart-dashboard-smoky.vercel.app/)**
 
 ## How to Install and Run Locally
 
@@ -29,15 +30,20 @@ To get this project running on your computer, follow these steps:
 
 ## Alert System Logic
 
-The system is designed to monitor a 30.0°C threshold. Here is how it works:
+The IoT Ops Center features a robust, real-time alerting system designed for industrial monitoring. The core logic is structured as follows:
 
-1. **Threshold**: If the temperature goes above 30.0°C, the system triggers a CRITICAL state.
-2. **Visuals**: The background color changes to red and a warning label appears.
-3. **Sound**: A synthetic siren sound plays using the Web Audio API to alert the user.
-4. **Logs**: Every time the threshold is crossed, a message is added to the System Notifications list with a timestamp.
-5. **Recovery**: If the temperature goes back below 30.0°C, the system logs a recovery message and returns to the normal blue theme.
-
-The data is simulated using a sine-wave oscillation to make sure it hits the threshold every few seconds for testing purposes.
+- **Threshold Monitoring**: The system maintains a strict `TEMP_THRESHOLD` of **30.0°C**. Telemetry is polled every **10 seconds** (`POLLING_INTERVAL`).
+- **Thermal Simulation**: To provide a realistic environment for demonstration:
+  - Data oscillates using a sine-wave function: `Math.sin((2 * Math.PI * timeSec) / 40) * 8.5`.
+  - Random "noise" is added to simulate sensor jitter.
+  - A base temperature of **27.5°C** is used, ensuring frequent threshold crossings for testing.
+- **Critical State Triggers**:
+  - **Visual Alert**: When the threshold is exceeded, the Global State `isCritical` becomes true, triggering a theme shift to a deep red (`#2a0b0b`) and activating an emergency pulse overlay.
+  - **Audio Synthesis**: The system uses the **Web Audio API** to generate a synthetic siren. A sawtooth oscillator cycles between 440Hz and 880Hz to create a high-visibility acoustic warning.
+  - **Event Logging**: Every state change (Nominal → Critical or vice versa) is timestamped and recorded using a custom `addLog` helper, ensuring a permanent record for audit trails.
+- **Manual Overrides**:
+  - **Cooling Boost**: Users can manually activate cooling, which applies a `-10.0°C` offset to the telemetry to simulate system mitigation.
+  - **Surge Simulation**: A manual override allows operators to simulate an immediate thermal surge to **35.2°C** for emergency response training.
 
 ## Technologies Used
 
