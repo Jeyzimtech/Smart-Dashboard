@@ -2,14 +2,23 @@
 
 This is a simple dashboard built with React and Vite for monitoring thermal data in a data center.
 
+## Developer
+**Jefter Tokomere**
+
 ## How to Install and Run Locally
 
 To get this project running on your computer, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Open your terminal in the project folder.
-3. Run `npm install` to download all the necessary packages.
-4. Run `npm run dev` to start the local development server.
+3. Install the required packages by running:
+   ```bash
+   npm install
+   ```
+4. Start the local development server by running:
+   ```bash
+   npm run dev
+   ```
 5. Open your browser and go to `http://localhost:5173`.
 
 ## Alert System Logic
